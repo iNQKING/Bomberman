@@ -12,7 +12,7 @@ class InteractionUser
     ConsoleOperation console = new ConsoleOperation();
 
 
-    public void Move(Snake postac)
+    public void Move(Postac postac)
     {
         System.Threading.Thread.Sleep(20);
 
