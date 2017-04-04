@@ -17,7 +17,7 @@ class InteractionUser
         System.Threading.Thread.Sleep(20);
 
 
-        pozycja = postac.GetHead();
+        pozycja = postac.GetPosition();
     
 
 
@@ -113,6 +113,6 @@ class InteractionUser
             }
         }
 
-        InsertNewHead(postac);
+        InsertNewPosition(postac);
     }
 }
