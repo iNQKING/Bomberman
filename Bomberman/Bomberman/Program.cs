@@ -18,6 +18,7 @@ namespace Bomberman
 
         enum TypObiektu
         {
+            None = 1,
             SpawnPoint = 2
         }
 
