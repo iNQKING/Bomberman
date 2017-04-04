@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,21 +15,27 @@ namespace Bomberman
             plansza1.addSpawnPoint(10, 6);
             ;
         }
+
+        enum TypObiektu
+        {
+            SpawnPoint = 2
+        }
+
         class Plansza
         {
-            private int[,] rozmiarPlanszy;
+            private TypObiektu[,] rozmiarPlanszy;
 
             public Plansza(int x, int y)
             {
 
-                rozmiarPlanszy = new int[x, y];
+                rozmiarPlanszy = new TypObiektu[x, y];
             }
 
             public void addSpawnPoint(int x, int y)
             {
-                rozmiarPlanszy[x, y] = 2;
+                rozmiarPlanszy[x, y] = TypObiektu.SpawnPoint;
             }
-            public void addObstacle(int x, int y)
+            public void addObstacle(List<Point> obstacle)
             {
                 List<int> list = new List<int>();
                 list.Add(2);
