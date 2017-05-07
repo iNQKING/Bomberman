@@ -12,6 +12,7 @@ namespace Bomberman
         Map map = new Map();
         Bomberman bomberman = new Bomberman();
         InteractionUser interaction = new InteractionUser();
+        CheckGame check = new CheckGame();
 
         public void Run()
         {
