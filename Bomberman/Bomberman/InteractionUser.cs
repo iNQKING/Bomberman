@@ -12,12 +12,12 @@ class InteractionUser
     ConsoleOperation console = new ConsoleOperation();
 
 
-    public void Move(Postac postac)
+    public void Move(Bomberman bomberman)
     {
         System.Threading.Thread.Sleep(20);
 
 
-        pozycja = postac.GetPosition();
+        pozycja = bomberman.GetPosition();
     
 
 
@@ -113,6 +113,6 @@ class InteractionUser
             }
         }
 
-        InsertNewPosition(postac);
+        InsertNewPosition(bomberman);
     }
 }
