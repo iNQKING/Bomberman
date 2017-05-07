@@ -42,7 +42,7 @@ namespace Bomberman
                                 console.DrawMap(map);
                                 console.DrawSnake(bomberman, map);
                                 interaction.Move(bomberman);
-                                if (check.CrashWall(snake) || check.CrashBody(snake, map))
+                                if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
                                     Console.WriteLine("\n\nKONIEC!   LICZBA ZDOBYTYCH PUNKTÓW: {0}", console.Score);
                                     Console.Beep(1000, 1000);
