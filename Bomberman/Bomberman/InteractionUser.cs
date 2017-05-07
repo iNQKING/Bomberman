@@ -117,5 +117,9 @@ class InteractionUser
 
         InsertNewPosition(bomberman);
     }
+        public void InsertNewPosition(Bomberman bomberman)
+        {
+            bomberman.Body.Insert(0, pozycja);
+        }
 }
 }
