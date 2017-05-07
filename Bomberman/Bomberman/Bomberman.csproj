@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Bomba.cs" />
     <Compile Include="Bomberman.cs" />
+    <Compile Include="CheckGame.cs" />
     <Compile Include="ConsoleApplication.cs" />
     <Compile Include="ConsoleOperation.cs" />
     <Compile Include="InteractionUser.cs" />

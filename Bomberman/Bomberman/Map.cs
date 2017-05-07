@@ -17,7 +17,7 @@ namespace Bomberman
 
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
-                    arrayMap[i, j] = ' ';       //Pusty znak
+                  arrayMap[i, j] = ' ';       //Pusty znak
         }
 
         public char[,] ArrayMap
