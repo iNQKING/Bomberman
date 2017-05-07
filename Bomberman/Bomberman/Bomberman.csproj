@@ -49,6 +49,7 @@
     <Compile Include="Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomItems.cs" />
     <Compile Include="Ruch.cs" />
   </ItemGroup>
   <ItemGroup>
