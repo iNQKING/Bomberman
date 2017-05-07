@@ -10,7 +10,7 @@ namespace Bomberman
     {
         ConsoleOperation console = new ConsoleOperation();
         Map map = new Map();
-        Snake snake = new Snake();
+        Bomberman bomberman = new Bomberman();
         InteractionUser interaction = new InteractionUser();
 
         public void Run()
@@ -40,8 +40,8 @@ namespace Bomberman
                             {
                                 console.ClearMap(map);
                                 console.DrawMap(map);
-                                console.DrawSnake(snake, map);
-                                interaction.Move(snake);
+                                console.DrawSnake(bomberman, map);
+                                interaction.Move(bomberman);
                                 if (check.CrashWall(snake) || check.CrashBody(snake, map))
                                 {
                                     Console.WriteLine("\n\nKONIEC!   LICZBA ZDOBYTYCH PUNKTÓW: {0}", console.Score);
