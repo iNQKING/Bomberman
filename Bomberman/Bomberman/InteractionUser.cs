@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Bomberman;
-
+namespace Bomberman
+{ 
 class InteractionUser
 {
     enum Direction { Left = 'a', Right = 'd', Up = 'w', Down = 's' }
@@ -116,4 +117,5 @@ class InteractionUser
 
         InsertNewPosition(bomberman);
     }
+}
 }
