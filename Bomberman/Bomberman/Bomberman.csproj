@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bomba.cs" />
+    <Compile Include="ConsoleApplication.cs" />
     <Compile Include="ConsoleOperation.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Program.cs" />
