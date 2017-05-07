@@ -40,7 +40,7 @@ namespace Bomberman
                             {
                                 console.ClearMap(map);
                                 console.DrawMap(map);
-                                console.DrawSnake(bomberman, map);
+                                console.DrawBomberman(bomberman, map);
                                 interaction.Move(bomberman);
                                 if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
