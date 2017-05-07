@@ -7,8 +7,8 @@ namespace Bomberman
 {
     class Map
     {
-        const int height = 40;      //Rozmiar
-        const int width =80;
+        const int height = 20;      //Rozmiar
+        const int width =70;
         private char[,] arrayMap;
 
         public Map()
