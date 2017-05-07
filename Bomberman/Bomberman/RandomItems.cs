@@ -7,7 +7,7 @@ namespace Bomberman
 {
     class RandomItems
     {
-        static Random rand = new Random();
+        /*static Random rand = new Random();
         Point powerUp;
 
 
@@ -21,7 +21,7 @@ namespace Bomberman
 
             return powerUp;
         }
-
+        */
         //public Point powerUp
         //{
         //    get { return powerUp; }
