@@ -42,12 +42,12 @@ namespace Bomberman
                                 console.DrawMap(map);
                                 console.DrawBomberman(bomberman, map);
                                 interaction.Move(bomberman);
-                                if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
+                                /*if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
                                     Console.WriteLine("\n\nKONIEC!   LICZBA ZDOBYTYCH PUNKTÓW: {0}", console.Score);
                                     Console.Beep(1000, 1000);
                                     break;
-                                }
+                                }*/
                             }
                             break;
 
