@@ -46,5 +46,21 @@ namespace Bomberman
                 WriteAt("║", 81, 1 + i);
             }
         }
+        public void DrawBomberman(Bomberman bomberman, Map map)
+        {
+            foreach (Point point in bomberman.Body)
+                map.ArrayMap[point.X, point.Y] = 'o';
+        }
+
+
+
+        public void ClearMap(Map map)
+        {
+            for (int i = 0; i < height; i++)
+                for (int j = 0; j < width; j++)
+                    map.ArrayMap[i, j] = ' ';
+
+        }
+
     }
 }
