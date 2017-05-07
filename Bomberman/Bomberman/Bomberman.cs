@@ -9,7 +9,7 @@ namespace Bomberman
     class Bomberman
     {
         private List<Point> body;
-        Point head;
+        Point pozycja;
 
         public Bomberman()
         {
@@ -24,10 +24,10 @@ namespace Bomberman
             get { return this.body; }
         }
 
-        public Point GetHead()
+        public Point GetPosition()
         {
-            head = Body[0];
-            return head;
+            pozycja = Body[0];
+            return pozycja;
         }
 
     }
