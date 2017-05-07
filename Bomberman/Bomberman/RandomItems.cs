@@ -22,7 +22,6 @@ namespace Bomberman
             return powerUp;
         }
 
-
         //public Point powerUp
         //{
         //    get { return powerUp; }
