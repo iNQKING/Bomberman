@@ -31,8 +31,6 @@ namespace Bomberman
             return gameOver;
         }
 
-
-
         public bool CrashBody(Bomberman bomberman, Map map)
         {
             pozycja = bomberman.GetPosition();
