@@ -8,8 +8,8 @@ namespace Bomberman
 {
     class ConsoleOperation
     {
-        const int height = 40;
-        const int width = 80;
+        const int height = 20;
+        const int width = 70;
       //RandomItems items = new RandomItems();
       //  Point pozycja;
       //private int score;
@@ -29,10 +29,10 @@ namespace Bomberman
         public void DrawMap(Map map)
         {
             WriteAt("╔", 0, 0);
-            WriteAt("╗", 80, 0);
-            WriteAt("╚", 0, 40);
-            WriteAt("╝", 80, 40);
-            WriteAt("══════════════════════════════════════════════════════════════════════", 1, 40);
+            WriteAt("╗", 71, 0);
+            WriteAt("╚", 0, 21);
+            WriteAt("╝", 71, 21);
+            WriteAt("══════════════════════════════════════════════════════════════════════", 1, 21);
             WriteAt("══════════════════════════════════════════════════════════════════════", 1, 0);
             for (int i = 0; i < height; i++)
             {
@@ -43,7 +43,7 @@ namespace Bomberman
 
                     Console.Write(map.ArrayMap[i, j]);
                 }
-                WriteAt("║", 80, 1 + i);
+                WriteAt("║", 71, 1 + i);
             }
         }
         public void DrawBomberman(Bomberman bomberman, Map map)
