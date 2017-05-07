@@ -10,8 +10,8 @@ namespace Bomberman
     {
         const int height = 40;
         const int width = 80;
-        RandomItems items = new RandomItems();
-        Point head;
+      //RandomItems items = new RandomItems();
+      //Point head;
         private int score;
         public void WriteAt(string s, int x, int y)
         {
@@ -47,3 +47,4 @@ namespace Bomberman
             }
         }
     }
+}
