@@ -42,7 +42,7 @@ namespace Bomberman
                                 console.DrawMap(map);
                                 console.DrawBomberman(bomberman, map);
                                 interaction.Move(bomberman);
-                                if (CheckGame.CrashWall(bomberman) || CheckGame.CrashBody(bomberman, map))
+                                if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
                                     Console.WriteLine("\n\nKONIEC!");
                                     //Console.Beep(1000, 1000);
