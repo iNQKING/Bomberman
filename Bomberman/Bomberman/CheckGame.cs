@@ -9,20 +9,20 @@ namespace Bomberman
     class CheckGame
     {
         private bool gameOver = false;
-        Point head;
+        Point pozycja;
 
 
         public bool CrashWall(Bomberman bomberman)
         {
-            head = bomberman.GetPosition();
+            pozycja = bomberman.GetPosition();
 
-            if (head.X < 0 || head.X > 19)
+            if (pozycja.X < 0 || pozycja.X > 19)
             {
                 gameOver = true;
                 return gameOver;
             }
 
-            if (head.Y < 0 || head.Y > 69)
+            if (pozycja.Y < 0 || pozycja.Y > 69)
             {
                 gameOver = true;
                 return gameOver;
@@ -35,9 +35,9 @@ namespace Bomberman
 
         public bool CrashBody(Bomberman bomberman, Map map)
         {
-            head = bomberman.GetPosition();
+            pozycja = bomberman.GetPosition();
 
-            if (map.ArrayMap[head.X, head.Y] != ' ' && map.ArrayMap[head.X, head.Y] != '*')
+            if (map.ArrayMap[pozycja.X, pozycja.Y] != ' ' && map.ArrayMap[pozycja.X, pozycja.Y] != '*')
             {
                 gameOver = true;
                 return gameOver;
