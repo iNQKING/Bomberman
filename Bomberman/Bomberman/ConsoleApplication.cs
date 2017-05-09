@@ -41,8 +41,8 @@ namespace Bomberman
                             {
                                 console.ClearMap(map);
                                 console.DrawMap(map);
-                                console.DrawBomberman(bomberman, map);
                                 interaction.Move(bomberman);
+                                console.DrawBomberman(bomberman, map);
                                 if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
                                     Console.WriteLine("\n\nKONIEC!");
@@ -54,6 +54,8 @@ namespace Bomberman
 
                         case 0:
                             Console.Write("\n\n\n\n\t\tŻYCZĘ MIŁEGO DNIA :)");
+                            break;
+                        default:
                             break;
                     }
                 } while (choice == 1 || choice == 2 || choice == 3);

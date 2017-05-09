@@ -49,7 +49,10 @@ namespace Bomberman
         public void DrawBomberman(Bomberman bomberman, Map map)
         {
             foreach (Point point in bomberman.Body)
+            {
                 map.ArrayMap[point.X, point.Y] = 'o';
+                WriteAt("o", point.X, point.Y);
+            }
         }
 
 

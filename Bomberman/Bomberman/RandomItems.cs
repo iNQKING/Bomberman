@@ -11,7 +11,7 @@ namespace Bomberman
         Point powerUp;
 
 
-        public Point RandomApple(Map map)
+        public Point RandompowerUp(Map map)
         {
             do
             {
