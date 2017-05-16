@@ -48,13 +48,23 @@ namespace Bomberman
         }
         public void DrawBomberman(Bomberman bomberman, Map map)
         {
+            /*
             foreach (Point point in bomberman.Body)
             {
                 map.ArrayMap[point.X, point.Y] = 'o';
                 WriteAt("o", point.X, point.Y);
             }
+
+    */
+            Point bpoint = bomberman.GetPosition();
+
+            WriteAt("o", bpoint.X, bpoint.Y);
         }
 
+        public void clearPoint(Point point)
+        {
+            WriteAt(" ", point.X, point.Y);
+        }
 
 
         public void ClearMap(Map map)

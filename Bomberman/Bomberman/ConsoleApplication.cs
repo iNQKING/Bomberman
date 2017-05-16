@@ -32,17 +32,22 @@ namespace Bomberman
 
                     choiceString = Console.ReadLine();
                     choice = int.Parse(choiceString);
+                    Point point;
 
                     switch (choice)
                     {
                         case 1:
                             Console.Clear();
+                            console.ClearMap(map);
+                            console.DrawMap(map);
+                            console.DrawBomberman(bomberman, map);
                             while (true)
                             {
-                                console.ClearMap(map);
-                                console.DrawMap(map);
-                                interaction.Move(bomberman);
-                                console.DrawBomberman(bomberman, map);
+
+                             point = interaction.Move(bomberman);
+                             console.DrawBomberman(bomberman, map);
+                             console.clearPoint(point);
+                                //System.Threading.Thread.Sleep(120000);
                                 if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
                                     Console.WriteLine("\n\nKONIEC!");

@@ -15,8 +15,9 @@ namespace Bomberman
         {
             body = new List<Point>();
 
-            for (int i = 0; i < 5; i++)
-                body.Add(new Point(10, 30 + i));
+            //for (int i = 0; i < 1; i++)
+                body.Add(new Point(10, 10));
+            pozycja = new Point(10, 10);
         }
 
         public List<Point> Body
@@ -24,10 +25,15 @@ namespace Bomberman
             get { return this.body; }
         }
 
+        public void setPosition(Point point)
+        {
+            this.pozycja = point;
+        }
+
         public Point GetPosition()
         {
-            pozycja = Body[0];
-            return pozycja;
+            //pozycja = Body[0];
+            return this.pozycja;
         }
 
     }
