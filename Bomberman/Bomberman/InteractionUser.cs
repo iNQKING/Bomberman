@@ -5,10 +5,11 @@ using System.Text;
 using System.IO;
 using Bomberman;
 namespace Bomberman
+
 { 
 class InteractionUser
 {
-    enum Direction { Left = 'a', Right = 'd', Up = 'w', Down = 's' }
+    enum Direction { Left = 'a', Right = 'd', Up = 'w', Down = 's'}
     Point pozycja;
     Direction currentDirection = Direction.Left;
     ConsoleOperation console = new ConsoleOperation();
@@ -23,7 +24,7 @@ class InteractionUser
 
             Point old = pozycja;
 
-        //if (Console.KeyAvailable)
+   
         if(true)
         {
             ConsoleKeyInfo key = Console.ReadKey(true);
@@ -32,31 +33,9 @@ class InteractionUser
             {
                     pozycja = new Point(pozycja.X, pozycja.Y - 1);
 
-                    /*
-                if (currentDirection != Direction.Down)  // jeśli aktualny kierunek węża jest różny od kierunku w dół
-                {
-                    pozycja = new Point(pozycja.X, pozycja.Y-1);
-                    currentDirection = Direction.Up;
-                }
-                else                                    // jeśli aktualny kierunek węża to kierunek w dół to wąż pójdzie w górę
-                {
-                    pozycja = new Point(pozycja.X + 1, pozycja.Y);
-                    currentDirection = Direction.Down;
-                }
-                */
+             
             } else if (key.KeyChar == (char)Direction.Down)        // s
-            {/*
-                if (currentDirection != Direction.Up)
-                {
-                    pozycja = new Point(pozycja.X + 1, pozycja.Y);
-                    currentDirection = Direction.Down;
-                }
-                else
-                {
-                    pozycja = new Point(pozycja.X - 1, pozycja.Y);
-                    currentDirection = Direction.Up;
-                }
-                */
+            {
 
                     pozycja = new Point(pozycja.X, pozycja.Y + 1);
                 }
@@ -64,36 +43,14 @@ class InteractionUser
 
             else if (key.KeyChar == (char)Direction.Left)        // a
             {
-                    /*
-                if (currentDirection != Direction.Right)
-                {
-                    pozycja = new Point(pozycja.X, pozycja.Y - 1);
-                    currentDirection = Direction.Left;
-                }
-                else
-                {
-                    pozycja = new Point(pozycja.X, pozycja.Y + 1);
-                    currentDirection = Direction.Right;
-                }
-                */
 
                     pozycja = new Point(pozycja.X - 1, pozycja.Y);
                 }
 
 
-            if (key.KeyChar == (char)Direction.Right)       // d
+            else if (key.KeyChar == (char)Direction.Right)       // d
             {
-                    /*
-                if (currentDirection != Direction.Left)
-                {
-                    pozycja = new Point(pozycja.X, pozycja.Y + 1);
-                    currentDirection = Direction.Right;
-                }
-                else
-                {
-                    pozycja = new Point(pozycja.X, pozycja.Y - 1);
-                    currentDirection = Direction.Left;
-                }*/
+                 
                     pozycja = new Point(pozycja.X + 1, pozycja.Y);
                 }
         }
@@ -131,7 +88,7 @@ class InteractionUser
     }
         public void InsertNewPosition(Bomberman bomberman)
         {
-            //bomberman.Body.Insert(0, pozycja);
+     ;
             bomberman.setPosition(pozycja);
         }
 }
