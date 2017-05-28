@@ -39,7 +39,7 @@ namespace Bomberman
                             Console.Clear();
                             console.ClearMap(map);
                             console.DrawMap(map);
-                            console.Przeszkody(przeszkody, map);
+                            console.DrawPrzeszkody(przeszkody, map);
                             console.DrawBomberman(bomberman, map);
                             while (true)
                             {
