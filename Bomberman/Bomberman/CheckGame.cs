@@ -16,13 +16,13 @@ namespace Bomberman
         {
             pozycja = bomberman.GetPosition();
 
-            if (pozycja.X < 0 || pozycja.X > 19)
+            if (pozycja.X < 1 || pozycja.X > 70)
             {
                 gameOver = true;
                 return gameOver;
             }
 
-            if (pozycja.Y < 0 || pozycja.Y > 69)
+            if (pozycja.Y < 1 || pozycja.Y > 20)
             {
                 gameOver = true;
                 return gameOver;
