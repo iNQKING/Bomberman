@@ -45,6 +45,13 @@ namespace Bomberman
                 WriteAt("║", 71, 1 + i);
             }
         }
+        public void DrawPrzeszkody(Przeszkody przeszkody, Map map)
+        {
+            WriteAt("x", 5, 5);
+            WriteAt("x", 10, 10);
+            WriteAt("x", 8, 8);
+            WriteAt("x", 12, 12);
+        }
         public void DrawBomberman(Bomberman bomberman, Map map)
         {
             /*
