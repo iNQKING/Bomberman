@@ -25,8 +25,6 @@ namespace Bomberman
                 {
                     Console.Write("\n\n\t\tWITAJ W GRZE BOMBERMAN! \n\n");
                     Console.Write("\t\t1. Graj\n");
-                    Console.Write("\t\t2. Jak grać?\n");
-                    Console.Write("\t\t3. O grze\n");
                     Console.Write("\t\t0. Wyjście z programu\n");
                     Console.Write("\n\n\t\tTwój wybór: ");
 
@@ -50,6 +48,7 @@ namespace Bomberman
                                 //System.Threading.Thread.Sleep(120000);
                                 if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
+                                    Console.Clear();
                                     Console.Write("\n\nKONIEC!");
                                     //Console.Beep(1000, 1000);
                                     break;
