@@ -13,6 +13,7 @@ namespace Bomberman
         Bomberman bomberman = new Bomberman();
         InteractionUser interaction = new InteractionUser();
         CheckGame check = new CheckGame();
+        Przeszkody przeszkody = new Przeszkody();
 
         public void Run()
         {
@@ -38,6 +39,7 @@ namespace Bomberman
                             Console.Clear();
                             console.ClearMap(map);
                             console.DrawMap(map);
+                            console.Przeszkody(przeszkody, map);
                             console.DrawBomberman(bomberman, map);
                             while (true)
                             {
@@ -49,7 +51,7 @@ namespace Bomberman
                                 if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
                                     Console.Clear();
-                                    Console.Write("\n\nKONIEC!");
+                                    Console.Write("KONIEC Gry!");
                                     //Console.Beep(1000, 1000);
                                     break;
                                 }
