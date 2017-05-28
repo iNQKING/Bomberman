@@ -48,7 +48,7 @@ namespace Bomberman
                              console.DrawBomberman(bomberman, map);
                              console.clearPoint(point);
                                 //System.Threading.Thread.Sleep(120000);
-                                if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
+                                if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map) || check.CrashPrzeszkoda(bomberman,map))
                                 {
                                     Console.Clear();
                                     Console.Write("KONIEC Gry!");
