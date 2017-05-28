@@ -50,7 +50,7 @@ namespace Bomberman
                                 //System.Threading.Thread.Sleep(120000);
                                 if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map))
                                 {
-                                    Console.WriteLine("\n\nKONIEC!");
+                                    Console.Write("\n\nKONIEC!");
                                     //Console.Beep(1000, 1000);
                                     break;
                                 }
