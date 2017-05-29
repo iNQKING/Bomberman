@@ -43,6 +43,21 @@ namespace Bomberman
 
             return gameOver;
         }
+        public bool CrashPrzeszkoda(Bomberman bomberman, Map map)
+        {
+            pozycja = bomberman.GetPosition();
+
+            if (pozycja.X == 5 && pozycja.Y == 5)
+            {
+                gameOver = true;
+                return gameOver;
+            }
+
+            return gameOver;
+        }
+     
     }
 }
+
+
 
