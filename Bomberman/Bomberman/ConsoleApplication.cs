@@ -18,7 +18,7 @@ namespace Bomberman
         public ConsoleApplication()
         {
             przeszkody.Add(new Point(5, 5));
-            przeszkody.Add(new Point(10, 10));
+            przeszkody.Add(new Point(11, 11));
             przeszkody.Add(new Point(8, 8));
             przeszkody.Add(new Point(12, 12));
             console.setPrzeszkody(przeszkody);
@@ -55,19 +55,34 @@ namespace Bomberman
                             {
 
                              point = interaction.Move(bomberman);
-                             console.DrawBomberman(bomberman, map);
-                            if(!(bomberman.GetPosition().X == point.X && bomberman.GetPosition().Y == point.Y))
-                                console.clearPoint(point);
-                                
-                                //System.Threading.Thread.Sleep(120000);
-                                if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map) || check.CrashPrzeszkoda(bomberman,map))
+
+                            if(point.X == 999 && point.Y == 999)
+                            {
+                                    console.detonate(bomberman);
+                                    if (przeszkody.Count == 0)
+                                    {
+                                        choice = 4;
+                                        break;
+                                    }
+                                } else
                                 {
-                                    Console.Clear();
-                                    Console.Write("KONIEC Gry!");
-                                    //Console.Beep(1000, 1000);
-                                    break;
+                                    console.DrawBomberman(bomberman, map);
+                                    if (!(bomberman.GetPosition().X == point.X && bomberman.GetPosition().Y == point.Y))
+                                        console.clearPoint(point);
+
+
+                                    //System.Threading.Thread.Sleep(120000);
+                                    if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map) || check.CrashPrzeszkoda(bomberman, map))
+                                    {
+                                        Console.Clear();
+                                        Console.Write("KONIEC Gry!");
+                                        //Console.Beep(1000, 1000);
+                                        break;
+                                    }
                                 }
                             }
+
+                            
                             break;
 
                         case 0:
@@ -76,7 +91,7 @@ namespace Bomberman
                         default:
                             break;
                     }
-                } while (choice == 1 || choice == 2 || choice == 3);
+                } while (choice == 1 || choice == 2 || choice == 3 || choice == 4);
 
             }
             catch (Exception e)
