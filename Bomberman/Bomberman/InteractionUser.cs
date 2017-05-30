@@ -13,6 +13,12 @@ class InteractionUser
     Point pozycja;
     Direction currentDirection = Direction.Left;
     ConsoleOperation console = new ConsoleOperation();
+    List<Point> przeszkody;
+
+    public void setPrzeszkody(List<Point> pp)
+        {
+            przeszkody = pp;
+        }
 
 
     public Point Move(Bomberman bomberman)
@@ -22,11 +28,9 @@ class InteractionUser
 
         pozycja = bomberman.GetPosition();
 
-            Point old = pozycja;
+        Point old = pozycja;
 
    
-        if(true)
-        {
             ConsoleKeyInfo key = Console.ReadKey(true);
 
             if (key.KeyChar == (char)Direction.Up)      // jeśli wcisnęliśmy klawisz 'W'
@@ -53,38 +57,20 @@ class InteractionUser
                  
                     pozycja = new Point(pozycja.X + 1, pozycja.Y);
                 }
-        }
 
-        else
-        {
-            switch (currentDirection)
+
+            foreach(Point p in przeszkody)
             {
-                case Direction.Up:
-                    {
-                        pozycja = new Point(pozycja.X - 1, pozycja.Y);
-                        break;
-                    }
-                case Direction.Down:
-                    {
-                        pozycja = new Point(pozycja.X + 1, pozycja.Y);
-                        break;
-                    }
-                case Direction.Left:
-                    {
-                        pozycja = new Point(pozycja.X, pozycja.Y - 1);
-                        break;
-                    }
-                case Direction.Right:
-                    {
-                        pozycja = new Point(pozycja.X, pozycja.Y + 1);
-                        break;
-                    }
+                if(p.X == pozycja.X && p.Y == pozycja.Y)
+                {
+                    pozycja = old;
+                }
             }
-        }
+       
 
         InsertNewPosition(bomberman);
 
-            return old;
+         return old;
     }
         public void InsertNewPosition(Bomberman bomberman)
         {

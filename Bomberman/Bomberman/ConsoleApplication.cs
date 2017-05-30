@@ -13,7 +13,17 @@ namespace Bomberman
         Bomberman bomberman = new Bomberman();
         InteractionUser interaction = new InteractionUser();
         CheckGame check = new CheckGame();
-        Przeszkody przeszkody = new Przeszkody();
+        List<Point> przeszkody = new List<Point>();
+
+        public ConsoleApplication()
+        {
+            przeszkody.Add(new Point(5, 5));
+            przeszkody.Add(new Point(10, 10));
+            przeszkody.Add(new Point(8, 8));
+            przeszkody.Add(new Point(12, 12));
+            console.setPrzeszkody(przeszkody);
+            interaction.setPrzeszkody(przeszkody);
+        }
 
         public void Run()
         {
@@ -39,14 +49,16 @@ namespace Bomberman
                             Console.Clear();
                             console.ClearMap(map);
                             console.DrawMap(map);
-                            console.DrawPrzeszkody(przeszkody, map);
+                            console.DrawPrzeszkody();
                             console.DrawBomberman(bomberman, map);
                             while (true)
                             {
 
                              point = interaction.Move(bomberman);
                              console.DrawBomberman(bomberman, map);
-                             console.clearPoint(point);
+                            if(!(bomberman.GetPosition().X == point.X && bomberman.GetPosition().Y == point.Y))
+                                console.clearPoint(point);
+                                
                                 //System.Threading.Thread.Sleep(120000);
                                 if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map) || check.CrashPrzeszkoda(bomberman,map))
                                 {

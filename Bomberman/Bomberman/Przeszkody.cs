@@ -8,9 +8,15 @@ namespace Bomberman
 {
     class Przeszkody
     {
-        public Przeszkody()
+        Point pozycja;
+        public Przeszkody(int x, int y)
         {
-           
+            pozycja = new Point(x, y);
+        }
+
+        public Point getPozycja()
+        {
+            return pozycja;
         }
     }
 }

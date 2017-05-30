@@ -10,8 +10,14 @@ namespace Bomberman
     {
         const int height = 20;
         const int width = 70;
+        List<Point> przeszkody;
       //  Point pozycja;
       //private int score;
+
+        public void setPrzeszkody(List<Point> ppp)
+        {
+            przeszkody = ppp;
+        }
         public void WriteAt(string s, int x, int y)
         {
             try
@@ -45,12 +51,18 @@ namespace Bomberman
                 WriteAt("║", 71, 1 + i);
             }
         }
-        public void DrawPrzeszkody(Przeszkody przeszkody, Map map)
+        public void DrawPrzeszkody()
         {
-            WriteAt("x", 5, 5);
-            WriteAt("x", 10, 10);
-            WriteAt("x", 8, 8);
-            WriteAt("x", 12, 12);
+            //WriteAt("x", 5, 5);
+            //WriteAt("x", 10, 10);
+            //WriteAt("x", 8, 8);
+            //WriteAt("x", 12, 12);
+            
+
+            foreach(var p in przeszkody)
+            {
+                WriteAt("x", p.X, p.Y);
+            }
         }
         public void DrawBomberman(Bomberman bomberman, Map map)
         {
