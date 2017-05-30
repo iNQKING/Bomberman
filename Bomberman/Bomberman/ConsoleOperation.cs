@@ -10,8 +10,8 @@ namespace Bomberman
     {
         const int height = 20;
         const int width = 70;
-      //  Point pozycja;
-      //private int score;
+        //Point pozycja;
+        //private int score;
         public void WriteAt(string s, int x, int y)
         {
             try
@@ -61,8 +61,9 @@ namespace Bomberman
                 WriteAt("o", point.X, point.Y);
             }
 
-    */
+            */
             Point bpoint = bomberman.GetPosition();
+            Point bombpoint = bomberman.GetPosition();
 
             WriteAt("o", bpoint.X, bpoint.Y);
         }

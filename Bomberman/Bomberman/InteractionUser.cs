@@ -9,7 +9,7 @@ namespace Bomberman
 { 
 class InteractionUser
 {
-    enum Direction { Left = 'a', Right = 'd', Up = 'w', Down = 's'}
+    enum Direction { Left = 'a', Right = 'd', Up = 'w', Down = 's', Bomb = 'x'}
     Point pozycja;
     Direction currentDirection = Direction.Left;
     ConsoleOperation console = new ConsoleOperation();
@@ -52,6 +52,11 @@ class InteractionUser
             {
                  
                     pozycja = new Point(pozycja.X + 1, pozycja.Y);
+                }
+            else if (key.KeyChar == (char)Direction.Bomb)       // X
+            {
+                 
+                    
                 }
         }
 
