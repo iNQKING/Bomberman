@@ -76,7 +76,7 @@ namespace Bomberman
                                     {
                                         Console.Clear();
                                         Console.Write("KONIEC Gry!");
-                                        //Console.Beep(1000, 1000);
+                                     
                                         break;
                                     }
                                 }

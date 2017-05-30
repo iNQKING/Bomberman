@@ -101,27 +101,7 @@ namespace Bomberman
             WriteAt(" ", point.X - 1, point.Y);
             WriteAt(" ", point.X, point.Y + 1);
             WriteAt(" ", point.X, point.Y - 1);
-            /*
-            for(int i=0; i < przeszkody.Capacity; i++)
-            {
-                if (przeszkody. == point.X + 1 && p.Y == point.Y)
-                {
-                    przeszkody.Remove(p);
-                }
-                else if (p.X == point.X - 1 && point.Y == point.Y)
-                {
-                    przeszkody.Remove(p);
-                }
-                else if (p.X == point.X && p.Y == point.Y + 1)
-                {
-                    przeszkody.Remove(p);
-                }
-                else if (p.X == point.X && p.Y == point.Y - 1)
-                {
-                    przeszkody.Remove(p);
-                }
-            }
-            */
+           
             foreach(Point p in przeszkody)
             {
                 if(p.X == point.X+1 && p.Y == point.Y)
@@ -147,10 +127,10 @@ namespace Bomberman
             {
                 Console.Clear();
                 WriteAt("KONIEC GRY!", 15, 15);
-                System.Threading.Thread.Sleep(100000);
+                System.Threading.Thread.Sleep(10000);
                 WriteAt("           ", 15, 35);
                 
-                //Console.Write("KONIEC Gry!");
+               
             }
         }
 
