@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Bomberman
 {
@@ -10,14 +8,11 @@ namespace Bomberman
     {
         const int height = 20;
         const int width = 70;
-        List<Point> przeszkody;
-      //  Point pozycja;
-      //private int score;
 
-        public void setPrzeszkody(List<Point> ppp)
-        {
-            przeszkody = ppp;
-        }
+        List<Przeszkoda> przeszkody;
+        List<Bomba> bomby;
+        Bomberman bomberman;
+
         public void WriteAt(string s, int x, int y)
         {
             try
@@ -31,6 +26,15 @@ namespace Bomberman
                 Console.WriteLine(e.Message);
             }
         }
+
+        public void WriteAt(string s, int x, int y, ConsoleColor consoleColor)
+        {
+            ConsoleColor backup = Console.BackgroundColor;
+            Console.BackgroundColor = consoleColor;
+            WriteAt(s, x, y);
+            Console.BackgroundColor = backup;
+        }
+
         public void DrawMap(Map map)
         {
             WriteAt("╔", 0, 0);
@@ -39,6 +43,9 @@ namespace Bomberman
             WriteAt("╝", 71, 21);
             WriteAt("══════════════════════════════════════════════════════════════════════", 1, 21);
             WriteAt("══════════════════════════════════════════════════════════════════════", 1, 0);
+            WriteAt("Masz bomb: ", 0, 23);
+            WriteAt(bomberman.getIloscBomb().ToString(), 11, 23);
+
             for (int i = 0; i < height; i++)
             {
 
@@ -51,37 +58,42 @@ namespace Bomberman
                 WriteAt("║", 71, 1 + i);
             }
         }
-        public void DrawPrzeszkody()
-        {
-            //WriteAt("x", 5, 5);
-            //WriteAt("x", 10, 10);
-            //WriteAt("x", 8, 8);
-            //WriteAt("x", 12, 12);
-            
 
-            foreach(var p in przeszkody)
+        public void drawBomby()
+        {
+            foreach(Bomba b in bomby)
             {
-                WriteAt("x", p.X, p.Y);
+                WriteAt(b.getBody(), b.getPosition().X, b.getPosition().Y);
             }
         }
-        public void DrawBomberman(Bomberman bomberman, Map map)
+
+        public void drawPrzeszkody()
         {
-            /*
-            foreach (Point point in bomberman.Body)
+            foreach(var P in przeszkody)
             {
-                map.ArrayMap[point.X, point.Y] = 'o';
-                WriteAt("o", point.X, point.Y);
+                WriteAt(P.getBody(), P.getPozycja().X, P.getPozycja().Y);
             }
-
-    */
-            Point bpoint = bomberman.GetPosition();
-
-            WriteAt("o", bpoint.X, bpoint.Y);
+        }
+        public void drawBomberman()
+        {
+            if(bomberman.isAlive())
+                WriteAt(bomberman.getBody(), bomberman.getPosition().X, bomberman.getPosition().Y);
         }
 
         public void clearPoint(Point point)
         {
-            WriteAt(" ", point.X, point.Y);
+            bool clearOrNotToClear = true;
+
+            foreach (Bomba b in bomby)
+            {
+                if (point.X == b.getPosition().X && point.Y == b.getPosition().Y)
+                {
+                    clearOrNotToClear = false;
+                    break;
+                }
+            }
+            if(clearOrNotToClear)
+                WriteAt(" ", point.X, point.Y);
         }
 
 
@@ -93,45 +105,97 @@ namespace Bomberman
 
         }
 
-        public void detonate(Bomberman b)
+        public void detonate(Bomba bomba)
         {
-            Point point = b.GetPosition();
-           
-            WriteAt(" ", point.X+1, point.Y);
-            WriteAt(" ", point.X - 1, point.Y);
-            WriteAt(" ", point.X, point.Y + 1);
-            WriteAt(" ", point.X, point.Y - 1);
-           
-            foreach(Point p in przeszkody)
+
+            splash(bomba.getPosition().X, bomba.getPosition().Y, ConsoleColor.Red);
+            removePrzeszkody(bomba.getPosition().X, bomba.getPosition().Y);
+            killThemAll(bomba.getPosition().X, bomba.getPosition().Y);
+
+
+            bomby.Remove(bomba);
+
+            Thread.Sleep(500);
+
+            splash(bomba.getPosition().X, bomba.getPosition().Y, ConsoleColor.Black);
+
+            drawBomberman();
+            WriteAt(bomberman.getIloscBomb().ToString(), 11, 23);
+
+            if (bomberman.getIloscBomb() == 0 && bomby.Count == 0)
+                bomberman.killBomberman();
+        }
+
+        public void splash(int x, int y, ConsoleColor color)
+        {
+            WriteAt(" ", x, y, color);
+            WriteAt(" ", (x+1), y, color);
+            WriteAt(" ", (x-1), y, color);
+            WriteAt(" ", x, (y+1), color);
+            WriteAt(" ", x, (y-1), color);
+        }
+
+        public void removePrzeszkody(int x, int y)
+        {
+            for(int i=0; i < przeszkody.Count; i++)
             {
-                if(p.X == point.X+1 && p.Y == point.Y)
+                Przeszkoda p = przeszkody[i];
+                if(x == p.getPozycja().X && y == p.getPozycja().Y)
                 {
                     przeszkody.Remove(p);
-                    break;
-                }else if (p.X == point.X - 1 && point.Y == point.Y)
+                    i--;
+                }else if((x+1) == p.getPozycja().X && y == p.getPozycja().Y)
                 {
                     przeszkody.Remove(p);
-                    break;
-                }else if (p.X == point.X && p.Y == point.Y + 1)
+                    i--;
+                }else if ((x-1) == p.getPozycja().X && y == p.getPozycja().Y)
                 {
                     przeszkody.Remove(p);
-                    break;
-                }else if(p.X == point.X && p.Y == point.Y - 1)
+                    i--;
+                }else if(x == p.getPozycja().X && (y+1) == p.getPozycja().Y)
                 {
                     przeszkody.Remove(p);
-                    break;
+                }else if(x == p.getPozycja().X && (y-1) == p.getPozycja().Y)
+                {
+                    przeszkody.Remove(p);
+                    i--;
                 }
             }
+        }
 
-            if(przeszkody.Count == 0)
+        public void killThemAll(int x, int y)
+        {
+            if(x == bomberman.getPosition().X && y == bomberman.getPosition().Y)
             {
-                Console.Clear();
-                WriteAt("KONIEC GRY!", 15, 15);
-                System.Threading.Thread.Sleep(10000);
-                WriteAt("           ", 15, 35);
-                
-               
+                bomberman.killBomberman();
+            }else if((x+1) == bomberman.getPosition().X && y == bomberman.getPosition().Y)
+            {
+                bomberman.killBomberman();
+            }else if((x - 1) == bomberman.getPosition().X && y == bomberman.getPosition().Y)
+            {
+                bomberman.killBomberman();
+            }else if(x == bomberman.getPosition().X && (y+1) == bomberman.getPosition().Y)
+            {
+                bomberman.killBomberman();
+            }else if(x == bomberman.getPosition().X && (y - 1) == bomberman.getPosition().Y)
+            {
+                bomberman.killBomberman();
             }
+        }
+        
+        public void setPrzeszkody(List<Przeszkoda> przeszkody)
+        {
+            this.przeszkody = przeszkody;
+        }
+
+        public void setBomby(List<Bomba> bomby)
+        {
+            this.bomby = bomby;
+        }
+
+        public void setBomberman(Bomberman bomberman)
+        {
+            this.bomberman = bomberman;
         }
 
     }

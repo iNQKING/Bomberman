@@ -6,17 +6,25 @@ using System.Threading.Tasks;
 
 namespace Bomberman
 {
-    class Przeszkody
+    class Przeszkoda
     {
         Point pozycja;
-        public Przeszkody(int x, int y)
+        string body;
+
+        public Przeszkoda(int x, int y)
         {
             pozycja = new Point(x, y);
+            body = "X";
         }
 
         public Point getPozycja()
         {
             return pozycja;
+        }
+
+        public string getBody()
+        {
+            return body;
         }
     }
 }

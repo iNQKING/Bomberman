@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Bomberman
 {
@@ -10,19 +8,40 @@ namespace Bomberman
     {
         ConsoleOperation console = new ConsoleOperation();
         Map map = new Map();
-        Bomberman bomberman = new Bomberman();
+        
+
         InteractionUser interaction = new InteractionUser();
-        CheckGame check = new CheckGame();
-        List<Point> przeszkody = new List<Point>();
+        Detonator detonator = new Detonator();
+
+        Bomberman bomberman;
+        List<Przeszkoda> przeszkody = new List<Przeszkoda>();
+        List<Bomba> bomby = new List<Bomba>();
+
+        Thread oThread;
+            
 
         public ConsoleApplication()
         {
-            przeszkody.Add(new Point(5, 5));
-            przeszkody.Add(new Point(11, 11));
-            przeszkody.Add(new Point(8, 8));
-            przeszkody.Add(new Point(12, 12));
+            bomberman = new Bomberman(10, 10);
+
+            przeszkody.Add(new Przeszkoda(5, 5));
+            przeszkody.Add(new Przeszkoda(4, 4));
+            przeszkody.Add(new Przeszkoda(9, 9));
+            przeszkody.Add(new Przeszkoda(12, 12));
+            przeszkody.Add(new Przeszkoda(15, 15));
+
             console.setPrzeszkody(przeszkody);
+            console.setBomberman(bomberman);
+            console.setBomby(bomby);
+
             interaction.setPrzeszkody(przeszkody);
+            interaction.setBomberman(bomberman);
+            interaction.setBomby(bomby);
+
+            detonator.setBomby(bomby);
+            detonator.setConsoleOperation(console);
+
+            oThread = new Thread(new ThreadStart(detonator.timeTick));
         }
 
         public void Run()
@@ -32,11 +51,15 @@ namespace Bomberman
 
             try
             {
-                do
-                {
+                //do
+                //{
+                    Console.Clear();
                     Console.Write("\n\n\t\tWITAJ W GRZE BOMBERMAN! \n\n");
                     Console.Write("\t\t1. Graj\n");
                     Console.Write("\t\t0. Wyjście z programu\n");
+                    Console.Write("\t\tWSAD - Poruszanie\n");
+                    Console.Write("\t\tX - bomba 3s\n");
+                    Console.Write("\t\tZ - bomba 5s\n");
                     Console.Write("\n\n\t\tTwój wybór: ");
 
                     choiceString = Console.ReadLine();
@@ -49,40 +72,26 @@ namespace Bomberman
                             Console.Clear();
                             console.ClearMap(map);
                             console.DrawMap(map);
-                            console.DrawPrzeszkody();
-                            console.DrawBomberman(bomberman, map);
-                            while (true)
+                            console.drawPrzeszkody();
+                            console.drawBomberman();
+                            
+                            oThread.Start();
+                            while (przeszkody.Count >= 1 && bomberman.isAlive())
                             {
-
-                             point = interaction.Move(bomberman);
-
-                            if(point.X == 999 && point.Y == 999)
-                            {
-                                    console.detonate(bomberman);
-                                    if (przeszkody.Count == 0)
-                                    {
-                                        choice = 4;
-                                        break;
-                                    }
-                                } else
-                                {
-                                    console.DrawBomberman(bomberman, map);
-                                    if (!(bomberman.GetPosition().X == point.X && bomberman.GetPosition().Y == point.Y))
-                                        console.clearPoint(point);
-
-
-                                    //System.Threading.Thread.Sleep(120000);
-                                    if (check.CrashWall(bomberman) || check.CrashBody(bomberman, map) || check.CrashPrzeszkoda(bomberman, map))
-                                    {
-                                        Console.Clear();
-                                        Console.Write("KONIEC Gry!");
-                                     
-                                        break;
-                                    }
-                                }
+                                point = interaction.Move();
+                                console.drawPrzeszkody();
+                                console.drawBomby();
+                                if (point != null)
+                                    console.clearPoint(point);
+                                console.drawBomberman();
                             }
 
-                            
+
+                            Console.Clear();
+                            console.ClearMap(map);  
+                            Console.Write("\n\n\t\tKONIEC BOMBERMANA! \n\n");
+                            Thread.Sleep(1000);
+
                             break;
 
                         case 0:
@@ -91,7 +100,7 @@ namespace Bomberman
                         default:
                             break;
                     }
-                } while (choice == 1 || choice == 2 || choice == 3 || choice == 4);
+                //} while (choice == 1);
 
             }
             catch (Exception e)

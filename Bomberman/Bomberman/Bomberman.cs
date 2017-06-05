@@ -8,21 +8,21 @@ namespace Bomberman
 {
     class Bomberman
     {
-        private List<Point> body;
+        string body;
         Point pozycja;
+        bool alive = true;
+        int iloscBomb = 3;
 
         public Bomberman()
         {
-            body = new List<Point>();
-
-            //for (int i = 0; i < 1; i++)
-                body.Add(new Point(10, 10));
             pozycja = new Point(10, 10);
+            body = "O";
         }
 
-        public List<Point> Body
+        public Bomberman(int x, int y)
         {
-            get { return this.body; }
+            pozycja = new Point(x, y);
+            body = "O";
         }
 
         public void setPosition(Point point)
@@ -30,10 +30,40 @@ namespace Bomberman
             this.pozycja = point;
         }
 
-        public Point GetPosition()
+        public Point getPosition()
         {
-            //pozycja = Body[0];
             return this.pozycja;
+        }
+
+        public string getBody()
+        {
+            return body;
+        }
+
+        public void setIloscBomb(int ilosc)
+        {
+            iloscBomb = ilosc;
+        }
+
+        public int getIloscBomb()
+        {
+            return iloscBomb;
+        }
+
+        public void plantBomb()
+        {
+            iloscBomb -= 1;
+        }
+
+        public bool isAlive()
+        {
+            return alive;
+        }
+
+        public void killBomberman()
+        {
+            alive = false;
+            
         }
 
     }

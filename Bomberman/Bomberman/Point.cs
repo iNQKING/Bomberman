@@ -17,7 +17,6 @@ namespace Bomberman
             this.y = y;
         }
 
-
         public int X
         {
             get { return this.x; }
