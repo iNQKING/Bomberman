@@ -11,7 +11,7 @@ namespace Bomberman
         string body;
         Point pozycja;
         bool alive = true;
-        int iloscBomb = 3;
+        int iloscBomb = 9;
 
         public Bomberman()
         {

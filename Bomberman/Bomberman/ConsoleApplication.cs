@@ -22,13 +22,19 @@ namespace Bomberman
 
         public ConsoleApplication()
         {
-            bomberman = new Bomberman(10, 10);
+            bomberman = new Bomberman(40, 10);
 
             przeszkody.Add(new Przeszkoda(5, 5));
             przeszkody.Add(new Przeszkoda(4, 4));
             przeszkody.Add(new Przeszkoda(9, 9));
             przeszkody.Add(new Przeszkoda(12, 12));
+            przeszkody.Add(new Przeszkoda(50, 8));
             przeszkody.Add(new Przeszkoda(15, 15));
+            przeszkody.Add(new Przeszkoda(13, 15));
+            przeszkody.Add(new Przeszkoda(67, 12));
+            przeszkody.Add(new Przeszkoda(66, 15));
+            przeszkody.Add(new Przeszkoda(40, 13));
+            przeszkody.Add(new Przeszkoda(20, 20));
 
             console.setPrzeszkody(przeszkody);
             console.setBomberman(bomberman);
@@ -85,16 +91,23 @@ namespace Bomberman
                                     console.clearPoint(point);
                                 console.drawBomberman();
                             }
-
-
+                            if (przeszkody.Count<=0 && bomberman.isAlive())
+                        {
+                            Console.Clear();
+                            console.ClearMap(map);
+                            Console.Write("\n\n\t\t GRATULACJE. WYGRALES \n\n");
+                            Thread.Sleep(1000);
+                            break;
+                        }
+                        else { 
                             Console.Clear();
                             console.ClearMap(map);  
-                            Console.Write("\n\n\t\tKONIEC BOMBERMANA! \n\n");
+                            Console.Write("\n\n\t\t NIESTETY. PRZEGRALES ! \n\n");
                             Thread.Sleep(1000);
 
                             break;
-
-                        case 0:
+                        }
+                    case 0:
                             Console.Write("\n\n\n\n\t\tŻYCZĘ MIŁEGO DNIA :)");
                             break;
                         default:
